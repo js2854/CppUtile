@@ -1,13 +1,13 @@
 /*********************************************************************
 *
-* ÎÄ¼şÃû³Æ£ºHeartbeat.cxx
-* Õª    Òª£º¿çWindowsºÍLinuxÆ½Ì¨µÄHeartbeatÀà
+* æ–‡ä»¶åç§°ï¼šHeartbeat.cxx
+* æ‘˜    è¦ï¼šè·¨Windowså’ŒLinuxå¹³å°çš„Heartbeatç±»
 *
-* µ±Ç°°æ±¾£º0.1
-* ×÷    Õß£ºJaxon Jia
-* ´´½¨ÈÕÆÚ£º2013/07/24
+* å½“å‰ç‰ˆæœ¬ï¼š0.1
+* ä½œ    è€…ï¼šJaxon Jia
+* åˆ›å»ºæ—¥æœŸï¼š2013/07/24
 *
-* ĞŞ¸ÄÀúÊ·£º
+* ä¿®æ”¹å†å²ï¼š
 *   |     Date    |  Programmer |  Description 
 *   |             |             | 
 *********************************************************************/
@@ -36,16 +36,16 @@ Heartbeat::~Heartbeat(void)
 }
 
 /*********************************************************************
-* º¯ÊıÃû³Æ: init
-* º¯ÊıÃèÊö: ³õÊ¼»¯
-* ²Î    Êı: 
-*			[IN]ip			const char *	IPµØÖ·
-*			[IN]port		u_int			¶Ë¿Ú
-*			[IN]interval	u_int			·¢ËÍĞÄÌø°üµÄ¼ä¸ô
-*			[IN]tolerance	u_int			ĞÄÌø³¬Ê±¼ä¸ôÊ±¼ä
-* ·µ »Ø Öµ: N/A
-* ´´    ½¨: Jaxon Jia (sz082169)
-* ´´½¨ÈÕÆÚ: 2013/07/24
+* å‡½æ•°åç§°: init
+* å‡½æ•°æè¿°: åˆå§‹åŒ–
+* å‚    æ•°: 
+*			[IN]ip			const char *	IPåœ°å€
+*			[IN]port		u_int			ç«¯å£
+*			[IN]interval	u_int			å‘é€å¿ƒè·³åŒ…çš„é—´éš”
+*			[IN]tolerance	u_int			å¿ƒè·³è¶…æ—¶é—´éš”æ—¶é—´
+* è¿” å› å€¼: N/A
+* åˆ›    å»º: Jaxon Jia (sz082169)
+* åˆ›å»ºæ—¥æœŸ: 2013/07/24
 *********************************************************************/
 void Heartbeat::init(HBRUNTYPE hb_type, const char* ip, u_int port, u_int interval, u_int tolerance)
 {
@@ -59,15 +59,15 @@ void Heartbeat::init(HBRUNTYPE hb_type, const char* ip, u_int port, u_int interv
 }
 
 /*********************************************************************
-* º¯ÊıÃû³Æ: send_msg
-* º¯ÊıÃèÊö: ÏûÏ¢·¢ËÍº¯Êı 
-* ²Î    Êı: 
-*			[IN]type	HBMSGTYPE		ÏûÏ¢ÀàĞÍ
-*			[IN]content	const char *	ÏûÏ¢ÄÚÈİ
-*			[IN]len		u_int			ÏûÏ¢ÄÚÈİµÄ³¤¶È
-* ·µ »Ø Öµ: ·¢ËÍ³É¹¦·µ»Ø0£¬·ñÔò·µ»Ø¸ºÖµ
-* ´´    ½¨: Jaxon Jia (sz082169)
-* ´´½¨ÈÕÆÚ: 2013/07/24
+* å‡½æ•°åç§°: send_msg
+* å‡½æ•°æè¿°: æ¶ˆæ¯å‘é€å‡½æ•° 
+* å‚    æ•°: 
+*			[IN]type	HBMSGTYPE		æ¶ˆæ¯ç±»å‹
+*			[IN]content	const char *	æ¶ˆæ¯å†…å®¹
+*			[IN]len		u_int			æ¶ˆæ¯å†…å®¹çš„é•¿åº¦
+* è¿” å› å€¼: å‘é€æˆåŠŸè¿”å›0ï¼Œå¦åˆ™è¿”å›è´Ÿå€¼
+* åˆ›    å»º: Jaxon Jia (sz082169)
+* åˆ›å»ºæ—¥æœŸ: 2013/07/24
 *********************************************************************/
 int Heartbeat::send_msg(HBMSGTYPE type, const char* content, u_int len)
 {
@@ -102,21 +102,21 @@ int Heartbeat::run()
 }
 
 /*********************************************************************
-* º¯ÊıÃû³Æ: as_client
-* º¯ÊıÃèÊö: ×÷Îª¿Í»§¶ËÔËĞĞÊ±µÄĞÄÌøÏß³Ìº¯Êı, as_clientºÍas_server»¥³â 
-* ²Î    Êı: N/A
-* ·µ »Ø Öµ: N/A
-* ´´    ½¨: Jaxon Jia (sz082169)
-* ´´½¨ÈÕÆÚ: 2013/07/25
+* å‡½æ•°åç§°: as_client
+* å‡½æ•°æè¿°: ä½œä¸ºå®¢æˆ·ç«¯è¿è¡Œæ—¶çš„å¿ƒè·³çº¿ç¨‹å‡½æ•°, as_clientå’Œas_serveräº’æ–¥ 
+* å‚    æ•°: N/A
+* è¿” å› å€¼: N/A
+* åˆ›    å»º: Jaxon Jia (sz082169)
+* åˆ›å»ºæ—¥æœŸ: 2013/07/25
 *********************************************************************/
 int Heartbeat::as_client()
 {
 	TRACE("Heartbeat -- Send to IP:Port = %s:%d!", m_ip, m_port);
 	while (true)
-	{// ¶¨Ê±·¢ËÍĞÄÌø
+	{// å®šæ—¶å‘é€å¿ƒè·³
 		send_msg(HB_MSG_RUNNING, "Heartbeat", strlen("Heartbeat"));
 		TRACE("Heartbeat -- Send Heartbeat!");
-		//callback();	// »Øµ÷´¦Àí
+		//callback();	// å›è°ƒå¤„ç†
 		mysleep(m_interval);
 	}
 
@@ -124,12 +124,12 @@ int Heartbeat::as_client()
 }
 
 /*********************************************************************
-* º¯ÊıÃû³Æ: as_server
-* º¯ÊıÃèÊö: ×÷Îª·şÎñ¶ËÔËĞĞÊ±µÄĞÄÌøÏß³Ìº¯Êı, as_clientºÍas_server»¥³â
-* ²Î    Êı: N/A
-* ·µ »Ø Öµ: N/A
-* ´´    ½¨: Jaxon Jia (sz082169)
-* ´´½¨ÈÕÆÚ: 2013/07/25
+* å‡½æ•°åç§°: as_server
+* å‡½æ•°æè¿°: ä½œä¸ºæœåŠ¡ç«¯è¿è¡Œæ—¶çš„å¿ƒè·³çº¿ç¨‹å‡½æ•°, as_clientå’Œas_serveräº’æ–¥
+* å‚    æ•°: N/A
+* è¿” å› å€¼: N/A
+* åˆ›    å»º: Jaxon Jia (sz082169)
+* åˆ›å»ºæ—¥æœŸ: 2013/07/25
 *********************************************************************/
 int Heartbeat::as_server()
 {
@@ -174,7 +174,7 @@ int Heartbeat::as_server()
 			}
 			else
 			{
-				callback((HBMSG*)recvbuf, &src_sin);	// »Øµ÷´¦Àí
+				callback((HBMSG*)recvbuf, &src_sin);	// å›è°ƒå¤„ç†
 			}
 		}//end of else if (ret > 0 && FD_ISSET(m_sock, &read_set))
 	}
@@ -183,14 +183,14 @@ int Heartbeat::as_server()
 }
 
 /*********************************************************************
-* º¯ÊıÃû³Æ: callback
-* º¯ÊıÃèÊö: Ïß³Ì»Øµ÷º¯Êı 
-* ²Î    Êı: 
-*			[IN]msg		HBMSG *		·¢ËÍ»ò½ÓÊÕµ½µÄÏûÏ¢
-*			[IN]src_sin	sockaddr_in	·¢ËÍ»ò½ÓÊÕµÄIP,PortĞÅÏ¢
-* ·µ »Ø Öµ: N/A
-* ´´    ½¨: Jaxon Jia (sz082169)
-* ´´½¨ÈÕÆÚ: 2013/07/25
+* å‡½æ•°åç§°: callback
+* å‡½æ•°æè¿°: çº¿ç¨‹å›è°ƒå‡½æ•° 
+* å‚    æ•°: 
+*			[IN]msg		HBMSG *		å‘é€æˆ–æ¥æ”¶åˆ°çš„æ¶ˆæ¯
+*			[IN]src_sin	sockaddr_in	å‘é€æˆ–æ¥æ”¶çš„IP,Portä¿¡æ¯
+* è¿” å› å€¼: N/A
+* åˆ›    å»º: Jaxon Jia (sz082169)
+* åˆ›å»ºæ—¥æœŸ: 2013/07/25
 *********************************************************************/
 void* Heartbeat::callback(HBMSG* msg, sockaddr_in *src_sin)
 {
@@ -260,7 +260,7 @@ void* Heartbeat::callback(HBMSG* msg, sockaddr_in *src_sin)
 	return (void*)HB_OK;
 }
 
-// Ïß³Ìº¯Êı
+// çº¿ç¨‹å‡½æ•°
 #ifdef WIN32
 void Heartbeat::threadfunc(void *param)
 #else
@@ -279,13 +279,13 @@ void* Heartbeat::threadfunc(void *param)
 	}
 }
 
-// »ñÈ¡µ±Ç°Ê±¼ä,¾«È·µ½Ãë
+// è·å–å½“å‰æ—¶é—´,ç²¾ç¡®åˆ°ç§’
 time_t Heartbeat::cur_time()
 {
 	return time(NULL);
 }
 
-// socket³õÊ¼»¯
+// socketåˆå§‹åŒ–
 int Heartbeat::init_sock()
 {
 #ifdef WIN32
@@ -366,9 +366,9 @@ int Heartbeat::init_sock()
 	return HB_OK;
 }
 
-//============= ÏÂÃæÊÇ¿çÆ½Ì¨Ïà¹Øº¯Êı ================
+//============= ä¸‹é¢æ˜¯è·¨å¹³å°ç›¸å…³å‡½æ•° ================
 
-// ÑÓÊ±º¯Êı
+// å»¶æ—¶å‡½æ•°
 void Heartbeat::mysleep(u_int ms)
 {
 #ifdef WIN32
@@ -378,7 +378,7 @@ void Heartbeat::mysleep(u_int ms)
 #endif
 }
 
-// ¹Ø±Õsocket
+// å…³é—­socket
 int Heartbeat::closesock(int sock)
 {
 #ifdef WIN32
@@ -388,7 +388,7 @@ int Heartbeat::closesock(int sock)
 #endif
 }
 
-// ´´½¨Ïß³Ì
+// åˆ›å»ºçº¿ç¨‹
 #ifdef WIN32
 int Heartbeat::new_thread(void (*func)(void*), void *param)
 {
