@@ -114,16 +114,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	// Add a comment to the section
 	cout << "TestIniFile - Demo program for the CIniFile Class" << endl << endl;
 	cout << "Attempting to add comments to [MySection]" << endl << endl;
-	cout << "CIniFile::SetSectionComments(\"# This Section was created by CIniFile\\n\",\"MySection\",FileName);" << endl << endl;
-	if (CIniFile::SetSectionComments("# This Section was created by CIniFile\n","MySection",FileName)) cout << "Comments were successfully added" << endl << endl;
+	cout << "CIniFile::SetSectionComments(\"# This Section was created by CIniFile\",\"MySection\",FileName);" << endl << endl;
+	if (CIniFile::SetSectionComments("# This Section was created by CIniFile","MySection",FileName)) cout << "Comments were successfully added" << endl << endl;
 	else cout << "Failed to add the comments" << endl << endl;
 	Show(FileName);
 
 	// Add a comment to the record
 	cout << "TestIniFile - Demo program for the CIniFile Class" << endl << endl;
 	cout << "Attempting to add comments to MyKey" << endl << endl;
-	cout << "CIniFile::SetRecordComments(\"# This Key was created by CIniFile\\n\",\"MyKey\",\"MySection\",FileName);" << endl << endl;
-	if (CIniFile::SetRecordComments("# This Key was created by CIniFile\n","MyKey","MySection",FileName)) cout << "Comments were successfully added" << endl << endl;
+	cout << "CIniFile::SetRecordComments(\"# This Key was created by CIniFile\",\"MyKey\",\"MySection\",FileName);" << endl << endl;
+	if (CIniFile::SetRecordComments("# This Key was created by CIniFile","MyKey","MySection",FileName)) cout << "Comments were successfully added" << endl << endl;
 	else cout << "Failed to add the comments" << endl << endl;
 	Show(FileName);
 

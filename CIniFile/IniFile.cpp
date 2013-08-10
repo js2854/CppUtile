@@ -9,6 +9,20 @@ CIniFile::~CIniFile(void)
 {
 }
 
+// replace all old_value with new_value in 'str'
+string& replace_all(string& str, const string& old_value, const string& new_value)   
+{   
+	while (true)
+	{   
+		string::size_type pos(0);   
+		if((pos = str.find(old_value)) != string::npos)   
+			str.replace(pos,old_value.length(),new_value);   
+		else
+			break;   
+	}   
+	return str;   
+}   
+
 // A function to trim whitespace from both sides of a given string
 void Trim(std::string& str, const std::string & ChrsToTrim = " \t\n\r", int TrimDir = 0)
 {
@@ -16,6 +30,9 @@ void Trim(std::string& str, const std::string & ChrsToTrim = " \t\n\r", int Trim
     if (startIndex == std::string::npos){str.erase(); return;}
     if (TrimDir < 2) str = str.substr(startIndex, str.size()-startIndex);
     if (TrimDir!=1) str = str.substr(0, str.find_last_not_of(ChrsToTrim) + 1);
+	// Trim whitespace from both sides of '='
+	if (str.at(0) != '#') str = replace_all(str, " ", "");
+	if (str.at(0) != '#') str = replace_all(str, "\t", "");
 }
 
 //inline void TrimRight(std::string& str, const std::string & ChrsToTrim = " \t\n\r")
@@ -102,12 +119,13 @@ bool CIniFile::Save(string FileName, vector<Record>& content)
 	for (int i=0;i<(int)content.size();i++)									// Loop through each vector
 	{
 		outFile << content[i].Comments;										// Write out the comments
-		if(content[i].Key == "")											// Is this a section?
-			outFile << content[i].Commented << "[" 
-			<< content[i].Section << "]" << endl;							// Then format the section
+		if (content[i].Commented != ' ')
+			outFile << content[i].Commented;
+
+		if(content[i].Key == "")											// Is this a section?			
+			outFile<< "[" << content[i].Section << "]" << endl;				// Then format the section
 		else
-			outFile << content[i].Commented << content[i].Key  
-			<< "=" << content[i].Value << endl;								// Else format a key/value
+			outFile << content[i].Key << "=" << content[i].Value << endl;	// Else format a key/value
 	}
 
 	outFile.close();														// Close the file
