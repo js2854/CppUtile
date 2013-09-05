@@ -4,10 +4,10 @@
 *       All rights reserved.
 *
 * Filename: Log.hh
-* Abstract: Describe the purpose of the file
+* Abstract: Log Class corss-platform(linux and windows)
 *
 * Version : 0.1
-* Author  : Jaxon Jia (UTSC0365)
+* Author  : js2854
 * Date    : 2013/09/03
 *
 **********************************************************************/
@@ -18,12 +18,12 @@
 #include <stdio.h>
 using namespace std;
 
-////µ¥ÊµÀıAPI
+////å•å®ä¾‹API
 #define SET_SINGLE_LOG_NAME(filepath)			SET_LOG_NAME("DEFAULT", filepath)
 #define SET_SINGLE_LOG_LEVEL(level)				SET_LOG_LEVEL("DEFAULT", level)
 #define SET_SINGLE_LOG_SIZE(size)				SET_LOG_SIZE("DEFAULT", size) 
 
-//¶àÊµÀıAPI
+//å¤šå®ä¾‹API
 #define SET_LOG_NAME(module, filepath)		CLogFactory::get_instance(module)->set_log_filepath(filepath)
 #define SET_LOG_LEVEL(module, level)		CLogFactory::get_instance(module)->set_log_level(level)
 #define SET_LOG_SIZE(module, size)			CLogFactory::get_instance(module)->set_log_size(size)
@@ -33,17 +33,17 @@ using namespace std;
 #define WARNING(module, format, ...)		CLogFactory::get_instance(module)->writeline(LOG_LEVEL_WARNING, format, ## __VA_ARGS__)
 #define ERROR(module, format, ...)			CLogFactory::get_instance(module)->writeline(LOG_LEVEL_ERROR, format, ## __VA_ARGS__)
 
-//ÈÕÖ¾¼¶±ğ
+//æ—¥å¿—çº§åˆ«
 enum _log_level
 {
-	LOG_LEVEL_ERROR		= 1,  //´íÎó
-	LOG_LEVEL_WARNING	= 2,  //¾¯¸æ
-	LOG_LEVEL_INFO      = 4,  //ÆÕÍ¨
-	LOG_LEVEL_TRACE     = 8,  //µ÷ÊÔ
+	LOG_LEVEL_ERROR		= 1,  //é”™è¯¯
+	LOG_LEVEL_WARNING	= 2,  //è­¦å‘Š
+	LOG_LEVEL_INFO      = 4,  //æ™®é€š
+	LOG_LEVEL_TRACE     = 8,  //è°ƒè¯•
 	LOG_LEVEL_MAX
 };
 
-//ÓÃ»§ÈÕÖ¾¼¶±ğÉèÖÃ
+//ç”¨æˆ·æ—¥å¿—çº§åˆ«è®¾ç½®
 #define LOG_ERROR        LOG_LEVEL_ERROR
 #define LOG_WARNING      (LOG_ERROR | LOG_LEVEL_WARNING)
 #define LOG_INFO         (LOG_WARNING | LOG_LEVEL_INFO)
@@ -91,32 +91,32 @@ public:
 	CLog(void);
 	~CLog(void);
 
-	//ÉèÖÃÈÕÖ¾ÎÄ¼şÂ·¾¶
+	//è®¾ç½®æ—¥å¿—æ–‡ä»¶è·¯å¾„
 	void set_log_filepath(const string filepath) {m_log_filename = filepath; mk_dir(); init();}
 
-	//ÉèÖÃÈÕÖ¾ÎÄ¼ş´óĞ¡ÇĞ»»
+	//è®¾ç½®æ—¥å¿—æ–‡ä»¶å¤§å°åˆ‡æ¢
 	void set_log_size(uint size) {m_log_size = size;}
 
-	//ÉèÖÃÈÕÖ¾¼¶±ğ
+	//è®¾ç½®æ—¥å¿—çº§åˆ«
 	void set_log_level(uint level) {m_log_level = (level > LOG_LEVEL_MAX) ? LOG_LEVEL_MAX : level;}
 	
-	//Ğ´ÈëÒ»ĞĞÈÕÖ¾
+	//å†™å…¥ä¸€è¡Œæ—¥å¿—
 	int writeline(uint level, const char* format_str, ...);
 
 private:
-	void	init();									//³õÊ¼»¯²Ù×÷
-	bool	mk_dir();								//¼ì²éÄ¿Â¼ÊÇ·ñ´æÔÚ,²»´æÔÚµÄ»°Ñ­»·´´½¨
-	char*	get_time_str(bool is_write=true);		//»ñÈ¡µ±Ç°Ê±¼ä×Ö·û´®
-	bool	rename_file();							//È¡µ±Ç°Ê±¼äÖØÃüÃûÈÕÖ¾ÎÄ¼ş
+	void	init();									//åˆå§‹åŒ–æ“ä½œ
+	bool	mk_dir();								//æ£€æŸ¥ç›®å½•æ˜¯å¦å­˜åœ¨,ä¸å­˜åœ¨çš„è¯å¾ªç¯åˆ›å»º
+	char*	get_time_str(bool is_write=true);		//è·å–å½“å‰æ—¶é—´å­—ç¬¦ä¸²
+	bool	rename_file();							//å–å½“å‰æ—¶é—´é‡å‘½åæ—¥å¿—æ–‡ä»¶
 
 private:
-	MutexLock	m_lock;								//Í¬²½Ëø,ÓÃÓÚ¶àÏß³ÌÍ¬²½Ğ´
-	string		m_log_filename;						//ÈÕÖ¾ÎÄ¼şÂ·¾¶Ãû
-	FILE*		m_fp;								//ÈÕÖ¾ÎÄ¼ş¾ä±ú
-	uint		m_log_level;						//ÉèÖÃµÄÈÕÖ¾¼¶±ğ
-	uint		m_log_size;							//ÉèÖÃµÄÈÕÖ¾ÎÄ¼ş´óĞ¡
+	MutexLock	m_lock;								//åŒæ­¥é”,ç”¨äºå¤šçº¿ç¨‹åŒæ­¥å†™
+	string		m_log_filename;						//æ—¥å¿—æ–‡ä»¶è·¯å¾„å
+	FILE*		m_fp;								//æ—¥å¿—æ–‡ä»¶å¥æŸ„
+	uint		m_log_level;						//è®¾ç½®çš„æ—¥å¿—çº§åˆ«
+	uint		m_log_size;							//è®¾ç½®çš„æ—¥å¿—æ–‡ä»¶å¤§å°
 	
-	char		m_time_str[MAX_TIME_STR_LEN];		//Ğ´»º³å
+	char		m_time_str[MAX_TIME_STR_LEN];		//å†™ç¼“å†²
 };
 
 #define MAX_LOG_INSTANCE	10
@@ -139,10 +139,9 @@ private:
 	static void  free_all_inst();
 
 private:
-	static log_inst		m_inst_list[MAX_LOG_INSTANCE];	//logÊµÀıÁĞ±í
-	static uint			m_inst_num;						//logÊµÀıÊıÁ¿
-	static MutexLock	m_lock;							//Í¬²½Ëø,ÓÃÓÚ¶àÏß³ÌÍ¬²½Ğ´
+	static log_inst		m_inst_list[MAX_LOG_INSTANCE];	//logå®ä¾‹åˆ—è¡¨
+	static uint			m_inst_num;						//logå®ä¾‹æ•°é‡
+	static MutexLock	m_lock;							//åŒæ­¥é”,ç”¨äºå¤šçº¿ç¨‹åŒæ­¥å†™
 };
 
 #endif // __Log_h__
-
