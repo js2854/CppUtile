@@ -1,15 +1,10 @@
 /*********************************************************************
-*
-* Copyright (c) 2013, UTStarcom (ShenZhen) Technology Ltd.
-*       All rights reserved.
-*
 * Filename: Log.hh
 * Abstract: Log Class corss-platform(linux and windows)
 *
 * Version : 0.1
 * Author  : js2854
-* Date    : 2013/09/03
-*
+* Date    : 2013/09/03*
 **********************************************************************/
 #ifndef __Log_h__
 #define __Log_h__
@@ -159,4 +154,3 @@ private:
 };
 
 #endif // __Log_h__
-
