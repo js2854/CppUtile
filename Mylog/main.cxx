@@ -94,13 +94,13 @@ int main()
 
 #ifdef WIN32
     _beginthread(threadfunc, NULL, TESTMODULE1);
-    //_beginthread(threadfunc, NULL, TESTMODULE1);
+    _beginthread(threadfunc, NULL, TESTMODULE1);
 #else
     pthread_t handle1 = 0;
     pthread_t handle2 = 0;
     int ret = pthread_create(&handle1, (pthread_attr_t*)0, threadfunc, (void*)TESTMODULE1);
     printf("create thread 1. ret = %d, handle=%d\n", ret, handle1);
-    ret = pthread_create(&handle2, (pthread_attr_t*)0, threadfunc, (void*)TESTMODULE2);
+    ret = pthread_create(&handle2, (pthread_attr_t*)0, threadfunc, (void*)TESTMODULE1);
     printf("create thread 2. ret = %d, handle=%d\n", ret, handle2);
 #endif
 

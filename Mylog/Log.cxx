@@ -15,6 +15,9 @@
 #include <sys/time.h>       //gettimeofday
 #define MKDIR(a)            mkdir((a),0755)
 #define PATH_SEPARATER      '/'
+
+#include <sys/syscall.h>    //for pid_t, syscall
+pid_t gettid() {  return syscall(SYS_gettid); }
 #endif
 
 #define DEFAULT_LOG_SIZE    (10*1024*1024)//10M
@@ -128,6 +131,15 @@ bool CLog::rename_file()
     return (0 == rename(m_log_filename.c_str(), new_name.c_str()));
 }
 
+int CLog::get_thread_id()
+{
+#ifdef WIN32
+    return GetCurrentThreadId();
+#else
+    return gettid();
+#endif
+}
+
 int CLog::writeline(uint level, const char* format_str, ...)
 {    
     if (m_log_level < level) return 0;
@@ -136,7 +148,7 @@ int CLog::writeline(uint level, const char* format_str, ...)
     assert(NULL != m_fp);
     if (ftell(m_fp) >= m_log_size) init();//«–ªª»’÷æ–¥»Î
 
-    int write_len = fprintf(m_fp, "[%s][%s]", get_time_str(true), s_level_str[level/2]);
+    int write_len = fprintf(m_fp, "[%s-%d][%s]", get_time_str(true), get_thread_id(), s_level_str[level/2]);
 
     va_list p_list;
     va_start(p_list, format_str);

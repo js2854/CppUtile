@@ -4,7 +4,7 @@
 *
 * Version : 0.1
 * Author  : js2854
-* Date    : 2013/09/03*
+* Date    : 2013/09/03
 **********************************************************************/
 #ifndef __Log_h__
 #define __Log_h__
@@ -117,6 +117,7 @@ private:
     bool    mk_dir();                           //检查目录是否存在,不存在的话循环创建
     char*   get_time_str(bool is_write=true);   //获取当前时间字符串
     bool    rename_file();                      //取当前时间重命名日志文件
+    int     get_thread_id();                    //获取当前进程id
 
 private:
     MutexLock   m_lock;                         //同步锁,用于多线程同步写
@@ -124,7 +125,7 @@ private:
     FILE*       m_fp;                           //日志文件句柄
     uint        m_log_level;                    //设置的日志级别
     uint        m_log_size;                     //设置的日志文件大小
-    
+
     char        m_time_str[MAX_TIME_STR_LEN];   //写缓冲
 };
 
@@ -154,3 +155,4 @@ private:
 };
 
 #endif // __Log_h__
+
