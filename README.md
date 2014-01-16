@@ -4,4 +4,4 @@
 
 - Heartbeat
 - IniFile读写类
-- Log日志文件类(线程安全,跨windows&linux平台,TODO:日志文件自动清理)
+- Log日志文件类(线程安全,跨windows&linux平台, 可设置自动清理日志文件)
