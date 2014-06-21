@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <stdarg.h>         //vsnprintf,va_start,va_end
 #include <algorithm>        //sort
+#include <string.h>
 
 #ifdef WIN32
 #include <io.h>             //access, _finddata_t, _findfirst, _findnext
@@ -35,7 +36,7 @@ pid_t gettid() {  return syscall(SYS_gettid); }
 
 #define NEW_LINE                "\r\n"
 
-static char* s_level_str[] = {"ERROR", "WARNING", "INFO", "TRACE"};
+static const char* s_level_str[] = {"ERROR", "WARNING", "INFO", "TRACE"};
 
 #define FCLOSE(fp)    {if (NULL != fp) {fclose(fp); fp = NULL;}}
 
@@ -280,7 +281,7 @@ bool CLog::get_log_files(const string& log_path, file_list& files)
 
     files.clear();
 
-    char* filename = strrchr(log_path.c_str(), PATH_SEPARATER) + 1;
+    const char* filename = strrchr(log_path.c_str(), PATH_SEPARATER) + 1;
     int name_len = strlen(filename);
 
     file_info info = {"", 0, 0};
