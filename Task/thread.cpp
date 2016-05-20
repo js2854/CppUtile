@@ -21,6 +21,7 @@ SInt32 Thread::Start()
     {
         printf("pthread_create error! errno %d-%s\n", errno, strerror(errno));
     }
+    return s32Ret;
 }
 
 void* Thread::ThreadEntry(void* i_pArg)
