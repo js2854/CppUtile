@@ -3,7 +3,7 @@ INC_DIR = . #inc
 SRC_DIR = . #src
 OBJ_DIR = obj
 
-CFLAGS  = -Wall -g
+CFLAGS  = -Wall 
 LDFLAGS = -lpthread -lrt
 
 SRCS = $(foreach DIR, ${SRC_DIR}, $(wildcard ${DIR}/*.cpp))
@@ -20,6 +20,10 @@ LD = g++
 .PHONY: all clean
 
 all: ${TARGET}
+
+debug: CFLAGS += -g -DDEBUG
+debug: ${TARGET}
+release: ${TARGET}
 
 mkdirs:	
 	test -d ${BIN_DIR} || mkdir -p ${BIN_DIR}

@@ -3,31 +3,33 @@
 
 #include <unistd.h>
 #include <sys/types.h>
+#include <string>
+#include <vector>
 #include <queue>
-using std::priority_queue;
+#include <map>
+#include <set>
 
-typedef signed char         SInt8;
-typedef unsigned char       UInt8;
-typedef signed short        SInt16;
-typedef unsigned short      UInt16;
-typedef signed int          SInt32;
-typedef unsigned int        UInt32;
-typedef signed long long    SInt64;
-typedef unsigned long long  UInt64;
+using namespace std;
 
-typedef struct T_Node
-{
-    UInt64 u64Priority;
-    void  *pValue;
-    T_Node() : u64Priority(0), pValue(NULL) {}
-    T_Node(UInt64 i_u64Priority, void *i_pValue) : u64Priority(i_u64Priority), pValue(i_pValue) {}
-    friend bool operator< (T_Node n1, T_Node n2)
-    {
-        // 默认元素越大，优先级越高; 但我们这里需要元素越小，优先级越高
-        return n1.u64Priority > n2.u64Priority;
-    }
-}T_Node;
+#ifdef DEBUG
+    #include <time.h>
+    #include <stdio.h>
+    #define TRACE(fmt, ...)     printf("[Time:%d]" fmt " -- [%s:%d]\n", (int)time(NULL), ## __VA_ARGS__, __FILE__, __LINE__)
+#else
+    #define TRACE(fmt, ...)
+#endif
 
-typedef priority_queue<T_Node> PriorityQueue;
+typedef signed char             SInt8;
+typedef unsigned char           UInt8;
+typedef signed short            SInt16;
+typedef unsigned short          UInt16;
+typedef signed int              SInt32;
+typedef unsigned int            UInt32;
+typedef signed long long        SInt64;
+typedef unsigned long long      UInt64;
+
+typedef vector<UInt32>          UInt32Vector;
+typedef vector<string>          StringVector;
+typedef map<string, string>     StringMap;
 
 #endif

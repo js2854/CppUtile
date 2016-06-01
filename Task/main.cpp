@@ -9,11 +9,11 @@ public:
     PrintTask() : Task() {}
     void Init()
     {
-        Signal(Task::kStartEvent);
+        PushEvents(Task::kStartEvent);
     }
     SInt64 Run()
     {
-        EventFlags events = GetEvents();
+        EventFlags events = PopEvents();
         if (events & kStartEvent)
         {
             printf("PrintTask: kStartEvent\n");
@@ -39,7 +39,7 @@ public:
 
 int main(int argc, char *argv[])
 {
-    TaskThreadPool::AddThreads(2);
+    TaskThreadPool::AddThreads(1);
 
     PrintTask *pTask = new PrintTask();
     pTask->Init();
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     SleepUs(5*1000*1000);// sleep 5s
 
     printf("main: send kill event\n");
-    pTask->Signal(Task::kKillEvent);
+    pTask->PushEvents(Task::kKillEvent);
     pTask = NULL;
 
     SleepUs(1*1000*1000);// sleep 1s
